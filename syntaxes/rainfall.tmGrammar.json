@@ -86,11 +86,11 @@
 			"name": "keyword.control.expression.term.rainfall"
 		},
 		"keyword-rule": {
-			"match": "\\b(await|and|select|consume|gain)\\b",
+			"match": "\\b(await|and|where|select|first|last|any|consume|none|gain|check)\\b",
 			"name": "keyword.control.expression.term.rainfall"
 		},
                 "keyword-scenario": {
-                        "match": "\\b(to|add|fire)\\b",
+                        "match": "\\b(to|add|fire|dump|rules)\\b",
                         "name":  "keyword.control.expression.scenario.rainfall"
                 },
                 "prim-operator": {
