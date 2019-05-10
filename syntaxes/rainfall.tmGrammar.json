@@ -1,0 +1,158 @@
+{
+	"scopeName": "source.rainfall",
+	"patterns": [
+                { "include": "#comment" },
+                { "include": "#expression" },
+                { "include": "#decl-type"},
+                { "include": "#decl-fact"},
+                { "include": "#decl-term"},
+                { "include": "#decl-rule"},
+                { "include": "#decl-scenario"},
+                { "include": "#decl-test"}
+        ],
+	"repository": {
+                "comment": {
+                        "patterns": [
+                                { "include": "#comment-line" }
+                        ]
+                },
+                "comment-line": {
+                        "match": "(--).*$\n?",
+                        "name":  "comment.line.rainfall"
+                },
+
+                "decl-type": {
+                        "match": "^type",
+                        "name":  "keyword.control.declaration.type.rainfall"
+                },
+
+                "decl-fact": {
+                        "match": "^fact",
+                        "name":  "keyword.control.declaration.fact.rainfall"
+                },
+
+                "decl-term": {
+                        "match": "^term",
+                        "name":  "keyword.control.declaration.term.rainfall"
+                },
+
+                "decl-rule": {
+                        "match": "^rule",
+                        "name":  "keyword.control.declaration.rule.rainfall"
+                },
+
+                "decl-scenario": {
+                        "match": "^scenario",
+                        "name":  "keyword.control.declaration.scenario.rainfall"
+                },
+
+                "decl-test": {
+                        "match": "^(watch\\s+)?(test)\\s+(kind|type|eval|eval'type|eval'term|assert)\\b",
+                        "captures": {
+                                "1": {"name": "keyword.control.declaration.watch.rainfall"},
+                                "2": {"name": "keyword.control.declaration.test.rainfall"},
+                                "3": {"name": "keyword.control.declaration.test.mode.rainfall"}
+                        }
+                },
+
+                "expression": {
+			"patterns": [
+                                { "include": "#keyword-shared" },
+                                { "include": "#keyword-type" },
+                                { "include": "#keyword-term" },
+                                { "include": "#keyword-scenario" },
+                                { "include": "#keyword-rule" },
+                                { "include": "#prim-operator" },
+                                { "include": "#prim-constructor" },
+                                { "include": "#prim-numeric"},
+                                { "include": "#prim-party"},
+                                { "include": "#prim-symbol"},
+                                { "include": "#gather-bind"},
+                                { "include": "#paren-round-expression" },
+                                { "include": "#paren-square-expression" },
+                                { "include": "#paren-brace-expression" }
+                        ]
+		},
+		"keyword-shared": {
+			"match": "\\b(fun)\\b",
+			"name": "keyword.control.expression.shared.rainfall"
+		},
+		"keyword-type": {
+			"match": "\\b(forall|exists)\\b",
+			"name": "keyword.control.expression.type.rainfall"
+		},
+		"keyword-term": {
+			"match": "\\b(the|let|rec|in|do|if|then|else|case|of|say|by|obs|use|num)\\b",
+			"name": "keyword.control.expression.term.rainfall"
+		},
+		"keyword-rule": {
+			"match": "\\b(await|and|select|consume|gain)\\b",
+			"name": "keyword.control.expression.term.rainfall"
+		},
+                "keyword-scenario": {
+                        "match": "\\b(to|add|fire)\\b",
+                        "name":  "keyword.control.expression.scenario.rainfall"
+                },
+                "prim-operator": {
+                        "match": "\\#[a-z][a-zA-Z0-9']*" ,
+                        "name": "constant.primitive.operator.rainfall"
+                },
+                "prim-constructor": {
+                        "match": "\\#[A-Z][a-zA-Z0-9']*" ,
+                        "name": "constant.primitive.constructor.rainfall"
+                },
+                "prim-numeric": {
+                        "match": "\\b[0-9]+\\b",
+                        "name":  "constant.numeric.rainfall"
+                },
+                "prim-party": {
+                        "match": "![a-zA-Z0-9']*" ,
+                        "name": "constant.primitive.operator.rainfall"
+                },
+                "prim-symbol": {
+                        "match": "'[a-zA-Z0-9']*" ,
+                        "name": "constant.primitive.operator.rainfall"
+                },
+                "gather-bind": {
+                        "match": "\\?[a-zA-Z0-9']*" ,
+                        "name": "constant.primitive.operator.rainfall"
+                },
+                "paren-round-expression": {
+			"begin": "\\(",
+			"end": "\\)",
+			"beginCaptures": {
+				"0": { "name": "punctuation.paren.round.open.rainfall" }
+			},
+			"endCaptures": {
+				"0": { "name": "punctuation.paren.round.close.rainfall" }
+			},
+			"name": "expression.group.round.rainfall",
+			"patterns": [{ "include": "#expression" }]
+		},
+                "paren-square-expression": {
+			"begin": "\\[",
+			"end": "\\]",
+			"beginCaptures": {
+				"0": { "name": "punctuation.paren.square.open.rainfall" }
+			},
+			"endCaptures": {
+				"0": { "name": "punctuation.paren.square.close.rainfall" }
+			},
+			"name": "expression.group.square.rainfall",
+			"patterns": [{ "include": "#expression" }]
+		},
+                "paren-brace-expression": {
+			"begin": "\\{",
+			"end": "\\}",
+			"beginCaptures": {
+				"0": { "name": "punctuation.paren.brace.open.rainfall" }
+			},
+			"endCaptures": {
+				"0": { "name": "punctuation.paren.brace.close.rainfall" }
+			},
+			"name": "expression.group.brace.rainfall",
+			"patterns": [{ "include": "#expression" }]
+		}
+
+        }
+}

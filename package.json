@@ -1,0 +1,88 @@
+{
+	"name": "rainfall-vscode",
+	"displayName": "rainfall-vscode",
+	"description": "Rainfall language plugin",
+	"version": "0.0.1",
+	"publisher": "rainfall-lang",
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/rainfall-lang/rainfall-vscode.git"
+	},
+	"engines": {
+		"vscode": "^1.30.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onLanguage:rainfall"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"languages": [
+			{
+				"id": "rainfall",
+				"extensions": [
+					".rain"
+				],
+				"aliases": [
+					"Rainfall"
+				],
+				"configuration": "data/rainfall.json"
+			}
+		],
+		"grammars": [
+			{
+				"language": "rainfall",
+				"scopeName": "source.rainfall",
+				"path": "./syntaxes/rainfall.tmGrammar.json"
+			}
+		],
+		"commands": [],
+		"configuration": {
+			"type": "object",
+			"title": "Rainfall",
+			"properties": {
+				"salt.server.executable": {
+					"type": "string",
+					"default": "rainfall",
+					"description": "How to start the 'rainfall' executable. You can set this to just 'salt' if the executable is in your path when you start VSCode, otherwise give the full path to it."
+				},
+				"salt.trace.server": {
+					"scope": "window",
+					"type": "string",
+					"enum": [
+						"off",
+						"messages",
+						"verbose"
+					],
+					"default": "off",
+					"description": "Trace the communication between VS Code and the language server. The output appears in the Rainfall Language Server output channel in VSCode."
+				},
+				"salt.trace.debug": {
+					"type": "string",
+					"default": null,
+					"description": "Log server side debug messages to this file. You will need to restart the Rainfall extension after changing this."
+				}
+			}
+		}
+	},
+	"scripts": {
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"test": "npm run compile && node ./node_modules/vscode/bin/test"
+	},
+	"devDependencies": {
+		"@types/mocha": "^2.2.42",
+		"@types/node": "^8.10.25",
+		"tslint": "^5.8.0",
+		"typescript": "^3.3.3",
+		"vscode": "^1.1.34"
+	},
+	"dependencies": {
+		"tsc": "^1.20150623.0",
+		"vsce": "^1.61.0",
+		"vscode-languageclient": "^3.5.1"
+	}
+}
